@@ -1,26 +1,42 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>POLITICAL TWEET ANALISYS</title>
-        <link href="https://fonts.googleapis.com/css?family=Allerta+Stencil|Montserrat" rel="stylesheet"> <!--- FONTE --->
-        <link href="css/style.css" rel="stylesheet"> <!--- REFERENCIAR CSS --->
-    </head>
+<head>
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Lang" content="en">
 
-    <body>
-        <h1 class="heading">Twitter <i class="fa fa-twitter" aria-hidden="true"></i> Sentiment Analysis</h1>
-            <p>
-                Escreva a <strong> #Hashtag </strong> abaixo para executar o algoritmo de Analise de Sentimento dos Tweets.
-                <br> 
-                Clique em <b> PROCURAR </b> e espere um momento para ver os resutados.
-                <br>
-            </p>
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
 
-        <form method="GET" action="show.php">
-            <input type="text" name="keyword" required="required"/> <br>
-            <input type="submit" value="PROCURAR"/>
-        </form>
-
-
+<title>Análise de popularidade política baseado em tweets</title>
+<link href="https://fonts.googleapis.com/css?family=Allerta+Stencil|Montserrat" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+<h1 class="heading">Análise de popularidade política baseado em tweets <!-- <i class="fa fa-twitter" aria-hidden="true"> -->
+    
+<form method="GET" action="show.php">
+    <input type="text" name="keyword" required="required"/> <br>
+    <input type="submit" value="Procurar Tweets"/>
+</form>
     </body>
 </html>

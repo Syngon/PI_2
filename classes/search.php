@@ -25,7 +25,7 @@ class search{
       $twitterSearchParams = array(
         'q'=>$parametros,
         'lang'=>'en',
-        'count'=>5,
+        'count'=>30,
     );
       $results = $TwitterSentimentAnalysis->sentimentAnalysis($twitterSearchParams);
       return $results;
@@ -46,13 +46,14 @@ class search{
 			
 		}
     $total = $pos + $neg + $neu;
-    return $total;
+    return array("total" => $total, "pos" => $pos, "neg" => $neg, "neu" => $neu);
   }
 
   public function show($parametros){
     $results = $this->find($parametros);
     $total = $this->analyse($results);
-    return json_encode($results);
+    $obj = array("resultados" => $results, "sentimento" => $total);
+    return $obj;
 
 		
   }
