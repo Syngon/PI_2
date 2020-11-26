@@ -2,6 +2,7 @@
 error_reporting(0);
 include_once(dirname(__FILE__).'/config.php');
 include_once(dirname(__FILE__).'/lib/TwitterSentimentAnalysis.php');
+session_start();
 
 class search{
 
@@ -25,7 +26,7 @@ class search{
       $twitterSearchParams = array(
         'q'=>$parametros,
         'lang'=>'en',
-        'count'=>30,
+        'count'=>10,
     );
       $results = $TwitterSentimentAnalysis->sentimentAnalysis($twitterSearchParams);
       return $results;
@@ -52,12 +53,8 @@ class search{
   public function show($parametros){
     $results = $this->find($parametros);
     $total = $this->analyse($results);
-    $obj = array("resultados" => $results, "sentimento" => $total);
+    $obj = array("resultados" => $results, "sentimento" => $total, "nome" => $parametros);
     return $obj;
-
-		
   }
-
-
 }
 ?>

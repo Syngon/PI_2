@@ -1,3 +1,10 @@
+<?php
+session_start(); 
+include_once 'classes/Candidatos.php';
+
+
+?>
+
 <!DOCTYPE html>
 <html>
    <head>
@@ -11,18 +18,10 @@
    </head>
    <body>
       <?php
-         $url = 'http://localhost/PI_TESTE';
-         $classe = 'search';
-            	$metodo = 'show';
-            	$keyword =  $_GET['keyword'];
-             
-             	$montar = $url.'/'.$classe.'/'.$metodo.'/'.$keyword;
-             
-          $retorno = file_get_contents($montar);
-          $obj = json_decode($retorno);
-             
-          $sentimentos = $obj->{'dados'}->{'sentimento'};
-          $resultado = json_decode(json_encode($obj->{'dados'}->{'resultados'}), true);
+         $trump = new Presidente();
+         $trump->set_variables('Trump', '1', '2', 'EUA');
+         $trump->acoes();
+
          ?>
       <h3>Resultados para "<?php echo $_GET['keyword']; ?>"</h3>
       <p class="res"><span class="pos">Tweets Positivos: <?php echo round(($sentimentos->{'pos'}/$sentimentos->{'total'})*100);?>%</span> | <span class="neu">Tweets Neutros: <?php echo round(($sentimentos->{'neu'}/$sentimentos->{'total'})*100);?>%</span> | <span class="neg"> Tweets Negativos: <?php echo round(($sentimentos->{'neg'}/$sentimentos->{'total'})*100);?>%</span> </p>
@@ -64,3 +63,5 @@
          ?>    
    </body>
 </html>
+
+<?php
