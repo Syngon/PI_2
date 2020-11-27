@@ -19,7 +19,7 @@ include_once 'classes/Candidatos.php';
    <body>
       <?php
          $trump = new Presidente();
-         $trump->set_variables('Trump', '1', '2', 'EUA');
+         $trump->set_variables(1, 'Trump', '1', '2', 'EUA');
          $trump->acoes();
 
          ?>

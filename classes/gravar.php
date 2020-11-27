@@ -20,7 +20,7 @@ if ($imagem != NULL and $pin == 777) {
       $tipo_candidato_insercao = 1;
     else if ($tipo_candidato == "Governador")
       $tipo_candidato_insercao = 2;
-    else
+    else if ($tipo_candidato == "Prefeito")
       $tipo_candidato_insercao = 3;
 
     $sql = "INSERT INTO candidatos VALUES(default, '$nome', '$mysqlImg', '$local', '$partido', '$tipo_candidato_insercao')";

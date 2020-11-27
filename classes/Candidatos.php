@@ -11,11 +11,12 @@ interface BD
 
 abstract class Candidato implements BD
 {
-  public $nome, $foto, $partido, $local, $resultado;
-  const URL = 'http://localhost/PI_TESTE/', CLASSE = 'search', METODO = 'show';
+  public $id_candidatos, $nome, $foto, $partido, $local, $resultado;
+  const URL = 'http://localhost/PI_TESTE/classes/', CLASSE = 'search', METODO = 'show';
 
-  public function set_variables($nome, $foto, $partido, $local)
+  public function set_variables($id_candidatos, $nome, $foto, $partido, $local)
   {
+    $this->id_candidatos = $id_candidatos;
     $this->nome = $nome;
     $this->foto = $foto;
     $this->local = $local;
@@ -30,27 +31,117 @@ abstract class Candidato implements BD
 
 class Prefeito extends Candidato
 {
-  function consultar()
+  public function procurar()
   {
+    $montar = parent::URL . '/' . parent::CLASSE . '/' . parent::METODO . '/' . $this->nome;
+
+    $retorno = file_get_contents($montar);
+    $obj = json_decode($retorno);
+
+    $sentimentos = $obj->{'dados'}->{'sentimento'};
+    $resultado = json_decode(json_encode($obj->{'dados'}->{'resultados'}), true);
+    $nome = $obj->{'dados'}->{'nome'};
+
+
+    $_SESSION[$this->nome]['novo']['nome'] = $nome;
+    $_SESSION[$this->nome]['novo']['resultado'] = $resultado;
+    $_SESSION[$this->nome]['novo']['sentimentos'] = $sentimentos;
+
+    $_SESSION[$this->nome]['antigo'] = array();
   }
-  function inserir()
+
+  public function inserir()
   {
+    foreach ($_SESSION[$this->nome]['novo']['resultado'] as $resultado) {
+      $userAUX = $resultado['user'];
+      $textAUX = $resultado['text'];
+      $sentimentAUX = $resultado['sentiment'];
+      $nomeAUX = $this->nome;
+
+      $sql = "INSERT INTO prefeitos VALUES (default, '$userAUX', '$textAUX', NOW(), '$nomeAUX', '$sentimentAUX')";
+
+      $result = $_SESSION['conn']->query($sql);
+
+      if ($result == false) break;
+    }
   }
-  function acoes()
+
+  public function consultar()
   {
+    $nomeAUX = $_SESSION[$this->nome]['nome'];
+    $sql = "SELECT * FROM prefeitos WHERE candidato = '$nomeAUX' LIMIT 50";
+    $result = $_SESSION['conn']->query($sql);
+
+    if (mysqli_num_rows($result) > 0) {
+      while ($row = mysqli_fetch_object($result)) {
+        array_push($_SESSION[$this->nome]['antigo'], $row);
+      }
+    }
+  }
+
+  public function acoes()
+  {
+    $this->procurar();
+    $this->inserir();
+    $this->consultar();
   }
 }
 
 class Governador extends Candidato
 {
-  function consultar()
+  public function procurar()
   {
+    $montar = parent::URL . '/' . parent::CLASSE . '/' . parent::METODO . '/' . $this->nome;
+
+    $retorno = file_get_contents($montar);
+    $obj = json_decode($retorno);
+
+    $sentimentos = $obj->{'dados'}->{'sentimento'};
+    $resultado = json_decode(json_encode($obj->{'dados'}->{'resultados'}), true);
+    $nome = $obj->{'dados'}->{'nome'};
+
+
+    $_SESSION[$this->nome]['novo']['nome'] = $nome;
+    $_SESSION[$this->nome]['novo']['resultado'] = $resultado;
+    $_SESSION[$this->nome]['novo']['sentimentos'] = $sentimentos;
+
+    $_SESSION[$this->nome]['antigo'] = array();
   }
-  function inserir()
+
+  public function inserir()
   {
+    foreach ($_SESSION[$this->nome]['novo']['resultado'] as $resultado) {
+      $userAUX = $resultado['user'];
+      $textAUX = $resultado['text'];
+      $sentimentAUX = $resultado['sentiment'];
+      $nomeAUX = $this->nome;
+
+      $sql = "INSERT INTO governadores VALUES (default, '$userAUX', '$textAUX', NOW(), '$nomeAUX', '$sentimentAUX')";
+
+      $result = $_SESSION['conn']->query($sql);
+
+      if ($result == false) break;
+    }
   }
-  function acoes()
+
+  public function consultar()
   {
+    $nomeAUX = $_SESSION[$this->nome]['nome'];
+    $sql = "SELECT * FROM governadores WHERE candidato = '$nomeAUX' LIMIT 50";
+    $result = $_SESSION['conn']->query($sql);
+
+    if (mysqli_num_rows($result) > 0) {
+      while ($row = mysqli_fetch_object($result)) {
+        array_push($_SESSION[$this->nome]['antigo'], $row);
+      }
+    }
+  }
+
+  public function acoes()
+  {
+    $this->procurar();
+    $this->inserir();
+    $this->consultar();
   }
 }
 
