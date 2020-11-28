@@ -13,6 +13,13 @@ body {
 }
 
 
+.container-fluid{
+  padding-right: 0px;
+  padding-left: 0px;
+  border-top: 1px;
+}
+
+
 
 #nav-animation {
   background-color:  rgb(191, 201, 207);
@@ -22,7 +29,7 @@ body {
 
 
 .header {
-  height: 75rem;
+  height: 100rem;
   padding: 2.5rem;
   background-color:  rgba(29,161,242,1.00);  
   box-shadow: 0px 0px 3px 3px rgba(0,0,0,.4);
@@ -31,7 +38,6 @@ body {
 .jumbotron h1{
   color: rgb(0, 0, 0);
   line-height: 6;
-
 }
 
 .vcenter {
