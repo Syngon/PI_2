@@ -1,51 +1,69 @@
+@import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css");
+
 body {
-    background-color: #4285F4;
-    padding: 100px 0;
-  }
-  
-  .c-search-bar {
-    display: flex;
-    justify-content: center;
-  }
-  
-  .c-search-bar__input {
-    border: none;
-    text-transform: uppercase;
-    font-size: 15px;
-    letter-spacing: 2px;
-    width: 0;
-    transition: .3s all;
-    background: none;
-    outline: 0;
-  }
-  
-  .c-search-bar__input--active {
-    width: 250px;
-    padding: 0 20px;
-    background-color: white;
-  }
-  
-  .c-search-bar__btn {
-    position: relative;
-  }
-  .c-search-bar__btn button {
-    border: 0;
-    background-color: #3375e6;
-    padding: 15px 25px;
-    position: relative;
-  }
-  .c-search-bar__btn svg {
-    display: block;
-    width: 20px;
-    fill: white;
-  }
-  
-  .c-search-bar__toggle {
-    position: absolute;
-    right: 0;
-    top: 0;
-    height: 100%;
-    width: 100%;
-    background: transparent;
-    z-index: 2;
-  }
+  background-color: rgba(29,161,242,1.00);
+  width: 100%;
+}
+
+.heading{
+  text-align: center;
+  margin-top: 50px;
+  font-size: 50px;
+  font-weight: bold;
+}
+
+
+
+#nav-animation {
+  background-color:  rgb(191, 201, 207);
+  -webkit-animation: slide-in 2.5s 1;
+  animation: slide-in 2.5s 1;
+}
+
+
+.header {
+  height: 75rem;
+  padding: 2.5rem;
+  background-color:  rgba(29,161,242,1.00);  
+  box-shadow: 0px 0px 3px 3px rgba(0,0,0,.4);
+}
+
+.jumbotron h1{
+  color: rgb(0, 0, 0);
+  line-height: 6;
+
+}
+
+.vcenter {
+  padding-top: 1rem;
+}
+
+.information {
+  height: absolute;
+  background-color:  rgba(29,161,242,1.00);
+  border-radius: 1rem;
+  margin: 0rem 1rem 1rem 1rem;
+  box-shadow: 0 0px 3px 3px rgba(0,0,0,.4);
+}
+
+
+footer {
+  background-color:  rgb(191, 201, 207);
+  height: 60px;
+  border-radius: 1rem;
+  /* box-shadow: 0 0px 3px 3px rgba(0,0,0,.4); */
+}
+
+footer > div > p > a {
+  color: rgb(248, 161, 0);
+}
+
+footer > div > p > a:hover {
+  color: rgb(20, 19, 14);
+}
+
+footer,
+.about {
+  height: 100%;
+  width: 100%;
+}
